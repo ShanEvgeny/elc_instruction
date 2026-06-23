@@ -1,0 +1,288 @@
+/* ===== Базовые настройки ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+  padding: 2rem;
+  /* Убедитесь, что body может скроллиться */
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #222;
+}
+
+.page-header span {
+  display: block;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== ГЛАВНЫЙ КОНТЕЙНЕР ===== */
+.main-section {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+/* Главный заголовок (тоже делаем липким) */
+.main-section > summary {
+  background: #1ABC9C;
+  color: #fff;
+  padding: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  
+  /* Липкость для главного заголовка */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Самый высокий приоритет */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.main-section > summary:hover {
+  background: #1abc8b;
+}
+
+.main-section > summary::after {
+  content: '▼';
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.main-section[open] > summary::after {
+  content: '▲';
+}
+
+.main-section-content {
+  padding: 2rem;
+  background: #f9fafb;
+}
+
+/* ===== ВНУТРЕННИЕ КАРТОЧКИ (Инструкции) ===== */
+.instructions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.instruction-card {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+/* Заголовок внутренней инструкции */
+.instruction-card > summary {
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  
+  /* НАСТРОЙКА ЛИПКОСТИ */
+  position: sticky;
+  /* Отступ сверху = высота главного заголовка (~70-80px) */
+  top: 80px; 
+  z-index: 900; /* Ниже главного, но выше контента */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.instruction-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+.instruction-card > summary:hover {
+  opacity: 0.95;
+}
+
+.instruction-card > summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  margin-left: auto;
+  font-weight: 300;
+}
+
+.instruction-card[open] > summary::after {
+  content: '−';
+}
+
+/* ===== ШАГИ ИНСТРУКЦИИ ===== */
+.steps-list {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.step-item {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.step-item::before {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: -2rem;
+  width: 2px;
+  background: #e5e7eb;
+  z-index: 0;
+}
+
+.step-item:last-child::before {
+  display: none;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #fff;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: sticky;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h3 {
+  font-size: 1.1rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.step-content p, .step-content li {
+  font-size: 1rem !important;
+  color: #4b5563 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.step-content ul, .step-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Изображения с ЗУМОМ */
+.step-image {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden; /* Здесь можно оставить, это не родитель summary */
+  border: 2px solid #ccd0d6;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.step-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 600px;
+  object-fit: contain;
+  
+  /* Плавная анимация */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Эффект увеличения при наведении */
+.step-image:hover img {
+  transform: scale(1.1);
+}
+
+/* Подсказки */
+.tip {
+  display: inline-block;
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  color: #1e40af;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .step-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .step-item::before {
+    left: 1.25rem;
+    top: 2rem;
+  }
+  
+  /* На мобильных уменьшаем отступ липкого заголовка */
+  .instruction-card > summary {
+    top: 60px;
+  }
+}
+
+.link {
+  color:#2563eb; 
+  font-weight:600;
+  text-decoration:none;
+  border-bottom:2px solid #3b82f660;
+}
+
+.link_button {
+  display:inline-block; 
+  margin:8px 0; 
+  padding:6px 18px; 
+  background:#fff; 
+  border:2px solid #9fc0a8; 
+  border-radius:30px; 
+  color:#2b7a48; 
+  text-decoration:none; 
+  font-weight:500;
+}
