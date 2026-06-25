@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Инструкции</title>
+  <link rel="stylesheet" href="instruction_style.css">
+</head>
+<body>
+  <script>
+    function loadInstruction(fileName, elementId){
+      fetch(fileName)
+            .then(response => response.text())
+            .then(html => document.getElementById(elementId).innerHTML = html);
+    }
+    const instructions = [
+        "reg_in_system",
+        "load_files",
+        "work_with_videoconference",
+        "work_with_questions",
+        "work_with_glossary",
+        "work_with_tracking",
+        "change_password",
+        "roles"
+    ];
+
+    instructions.forEach(name => {
+        loadInstruction(
+            `students_instructions_templates/${name}.html`,
+            name
+        );
+    });
+  </script>
+  <div class="container">
+    <header class="page-header">
+      <h1>Полезные инструкции</h1>
+      <span>Для студентов</span>
+    </header>
+
+    <main>
+
+      <!-- ОСНОВНОЙ АККОРДЕОН: РЕГИСТРАЦИЯ И РАБОТА -->
+      <details class="main-section" open>
+        <summary>Регистрация и работа в системе</summary>
+
+        <!-- ИНСТРУКЦИЯ 1: РЕГИСТРАЦИЯ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Регистрация в системе</span>
+          </summary>
+          <div id = "reg_in_system"></div>
+        </details>
+
+        <!-- ИНСТРУКЦИЯ 2: ЗАГРУЗКА ФАЙЛА -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Загрузка файла в задание</span>
+          </summary>
+          <div id = "load_files"></div>
+        </details>
+
+        <!-- ИНСТРУКЦИЯ 3: ВИДЕОКОНФЕРЕНЦИЯ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Подключение к видеоконференции</span>
+          </summary>
+          <div id = "work_with_videoconference"></div>
+        </details>
+
+      </details>
+
+      <!-- ВТОРОЙ АККОРДЕОН: FAQ -->
+      <details class="main-section">
+        <summary>Часто задаваемые вопросы</summary>
+
+        <!-- FAQ 1: БАНК ВОПРОСОВ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Как быстро добавить вопросы в банк вопросов</span>
+          </summary>
+          <div id = "work_with_questions"></div>
+        </details>
+
+        <!-- FAQ 2: ГЛОССАРИЙ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Как быстро добавить термины в глоссарий</span>
+          </summary>
+          <div id = "work_with_glossary"></div>
+        </details>
+
+        <!-- FAQ 3: ОТСЛЕЖИВАНИЕ ВЫПОЛНЕНИЯ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Как включить отслеживание выполнения элементов курса</span>
+          </summary>
+          <div id = "work_with_tracking"></div>
+        </details>
+
+        <!-- FAQ 4: СМЕНА ПАРОЛЯ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Как изменить пароль от аккаунта</span>
+          </summary>
+          <div id = "change_password"></div>
+        </details>
+
+        <!-- FAQ 5: РОЛИ ПОЛЬЗОВАТЕЛЕЙ -->
+        <details class="instruction-card">
+          <summary>
+            <span class="card-header">Какие роли возможны у пользователей</span>
+          </summary>
+          <div id = "roles"></div>
+        </details>
+
+      </details>
+
+    </main>
+  </div>
+</body>
+</html>
