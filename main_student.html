@@ -5,32 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Инструкции</title>
   <link rel="stylesheet" href="instruction_style.css">
+  <script src="instructions.js" defer></script>
 </head>
 <body>
-  <script>
-    function loadInstruction(fileName, elementId){
-      fetch(fileName)
-            .then(response => response.text())
-            .then(html => document.getElementById(elementId).innerHTML = html);
-    }
-    const instructions = [
-        "reg_in_system",
-        "load_files",
-        "work_with_videoconference",
-        "work_with_questions",
-        "work_with_glossary",
-        "work_with_tracking",
-        "change_password",
-        "roles"
-    ];
-
-    instructions.forEach(name => {
-        loadInstruction(
-            `students_instructions_templates/${name}.html`,
-            name
-        );
-    });
-  </script>
   <div class="container">
     <header class="page-header">
       <h1>Полезные инструкции</h1>
