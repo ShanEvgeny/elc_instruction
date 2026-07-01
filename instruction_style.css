@@ -258,8 +258,9 @@ body {
     gap: 0.5rem;
   }
   .step-item::before {
-    left: 1.25rem;
-    top: 2rem;
+    /* left: 1.25rem;
+    top: 2rem; */
+    display: none;
   }
   
   /* На мобильных уменьшаем отступ липкого заголовка */
